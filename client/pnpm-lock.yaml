@@ -8,6 +8,9 @@ dependencies:
   '@fontsource-variable/cairo':
     specifier: ^5.0.20
     version: 5.0.20
+  '@fontsource-variable/red-hat-display':
+    specifier: ^5.0.21
+    version: 5.0.21
   '@tanstack/vue-query':
     specifier: ^5.37.1
     version: 5.37.1(vue@3.4.27)
@@ -672,6 +675,10 @@ packages:
 
   /@fontsource-variable/cairo@5.0.20:
     resolution: {integrity: sha512-0KtB+k1EbV+gIuxrMGmZwy3S6tW3ThH4Zy/OXvKfi6J6iEd2rbkxl9RN1OrxhysZDtGawSzagdWnFQ9rSygKsQ==}
+    dev: false
+
+  /@fontsource-variable/red-hat-display@5.0.21:
+    resolution: {integrity: sha512-0wWiihN9oAmTDqnXg9YIN9TyHlklkv4Kzo2qWApItqALWtqZjaYYszQX2Qp86rTDv03KVacphoZnBcJJmDmFzQ==}
     dev: false
 
   /@humanwhocodes/config-array@0.11.14:

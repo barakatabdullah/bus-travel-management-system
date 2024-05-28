@@ -4,16 +4,15 @@
 
 @import './primevue-sass-theme/themes/aura/aura-light/indigo/theme.scss';
 // Supports weights 200-900
-@import '@fontsource-variable/cairo';
+@import '@fontsource-variable/red-hat-display';
 
-@import './pages/home';
 
 
 html {
   scroll-behavior: smooth;
 }
 * {
-  font-family: 'Cairo Variable', sans-serif;
+  font-family: 'Red Hat Display Variable', sans-serif;
 }
 /* html,
 body,
