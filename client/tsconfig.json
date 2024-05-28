@@ -1,0 +1,23 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    }
+  ],
+  "include": [
+
+    "./typed-router.d.ts"
+  ],
+  // "compilerOptions": {
+
+  //   "moduleResolution": "Bundler",
+  //   "types": [
+  //     "unplugin-vue-router/client",
+  //     "vite-plugin-vue-layouts/client"
+  //   ]
+  // }
+}

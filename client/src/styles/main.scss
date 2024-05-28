@@ -1,0 +1,39 @@
+// Reset CSS does not get in the way of PrimeVue components
+@layer tailwind, primevue;
+@import '@unocss/reset/tailwind.css' layer(tailwind-reset);
+
+@import './primevue-sass-theme/themes/aura/aura-light/indigo/theme.scss';
+// Supports weights 200-900
+@import '@fontsource-variable/cairo';
+
+@import './pages/home';
+
+
+html {
+  scroll-behavior: smooth;
+}
+* {
+  font-family: 'Cairo Variable', sans-serif;
+}
+/* html,
+body,
+:root {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+  text-decoration: none;
+  list-style: none;
+} */
+body {
+  width: 100vw;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* a {
+  text-decoration: none;
+}
+
+label {
+  cursor: pointer;
+} */
