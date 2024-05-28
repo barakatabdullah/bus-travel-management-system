@@ -15,12 +15,23 @@ import {
 } from 'unplugin-vue-components/resolvers'
 
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-import {PrimeVueResolver} from 'unplugin-vue-components/resolvers';
+import { PrimeVueResolver } from 'unplugin-vue-components/resolvers';
 
 
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+
+    proxy: {
+      
+      "/api": {
+        target: "http://127.0.0.1:8000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      }
+    }
+  },
   plugins: [
     vue(),
     UnoCSS(),
@@ -49,12 +60,12 @@ export default defineConfig({
       resolvers: [
         AntDesignVueResolver(),
         ElementPlusResolver(),
-        VantResolver(),PrimeVueResolver()
+        VantResolver(), PrimeVueResolver()
       ],
     }),
     Layouts()
   ],
-  
+
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import api from '@/config/axios';
 import { useMutation, useQuery } from '@tanstack/vue-query';
 import axios from 'axios';
 
@@ -13,8 +14,8 @@ const passwordConfirmation = ref(null);
 
 // Mutation
 const {mutate} = useMutation({
-  mutationFn: ()=>{
-    const res= axios.post('http://127.0.0.1:8000/register',{
+  mutationFn: async ()=>{
+    const res= await api.post('register',{
 "username":name.value,
 "email":email.value,
 "phone":phone.value,

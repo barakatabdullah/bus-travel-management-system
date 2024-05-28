@@ -9,8 +9,8 @@ use App\Http\Controllers\AuthController;
 //     return $request->user();
 // })->middleware('auth:api');
 
-Route::post('/register', 'AuthController@create');
+Route::post('/api/register', 'AuthController@create');
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('user', 'AuthController@user');
+    Route::get('/user', 'AuthController@user');
 });
