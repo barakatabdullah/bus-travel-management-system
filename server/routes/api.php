@@ -10,14 +10,7 @@ use App\Http\Controllers\AuthController;
 // })->middleware('auth:api');
 
 Route::post('/register', [AuthController::class, 'create']);
-Route::get('/test', function(){
-    try{
-        $data='hello';
-        return response()->json($data, 200);
-    }catch (Exception $e) {
-        return response()->json($e, 500);
-}
-});
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', 'AuthController@user');

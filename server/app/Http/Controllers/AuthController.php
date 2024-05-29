@@ -52,8 +52,10 @@ class AuthController extends Controller
         ]);
 
 
-        // Fire off the internal request. 
+        // Fire off the internal request.
         $token = $user->createToken('Token name')->accessToken;
+
+        $user->assignRole('admin');
 
 
         return response()->json(['data' => ['user' => $user, 'token' => $token]], 201);
@@ -62,6 +64,29 @@ class AuthController extends Controller
        }
     }
 
+    public function login(Request $request){
+        $valid = validator($request->only('email', 'password'), [
+            'email' => 'required|email',
+            'password' => 'required|string|min:6',
+        ]);
+
+        if ($valid->fails()) {
+            $jsonError = response()->json($valid->errors()->all(), 400);
+            return response()->json($jsonError);
+        }
+
+       try{
+        $credentials = $request->only(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        $user = auth()->user();
+        return response()->json(['data' => ['user' => $user, 'token' => $token]], 201);
+       } catch (\Exception $e) {
+        return response()->json($e->getMessage(), 500);
+       }
+    }
 
 
 
