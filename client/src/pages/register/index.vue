@@ -20,7 +20,7 @@ const {mutate} = useMutation({
 "email":email.value,
 "phone":phone.value,
 "password":password.value,
-"password-confirm":passwordConfirmation.value
+"password_confirmation":passwordConfirmation.value
 }).then(res=>res.data)
 return res
   },

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mockery\Expectation;
+use App\Models\User;
+
 
 class AuthController extends Controller
 {
@@ -26,11 +29,11 @@ class AuthController extends Controller
          * @param  array  $request
          * @return \Illuminate\Contracts\Validation\Validator
          */
-        $valid = validator($request->only('email', 'name', 'password', 'mobile'), [
-            'name' => 'required|string|max:255',
+        $valid = validator($request->only('email', 'username', 'password', 'phone',"password_confirmation"), [
+            'username' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'mobile' => 'required',
+            'phone' => 'required',
         ]);
 
         if ($valid->fails()) {
@@ -38,13 +41,14 @@ class AuthController extends Controller
             return response()->json($jsonError);
         }
 
-        $data = request()->only('email', 'name', 'password', 'mobile');
+       try{
+        $data = $request->only('email', 'username', 'password', 'phone');
 
         $user = User::create([
-            'name' => $data['name'],
+            'name' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'mobile' => $data['mobile']
+            'phone' => $data['phone']
         ]);
 
 
@@ -53,6 +57,9 @@ class AuthController extends Controller
 
 
         return response()->json(['data' => ['user' => $user, 'token' => $token]], 201);
+       } catch (\Exception $e) {
+        return response()->json($e->getMessage(), 500);
+       }
     }
 
 
