@@ -18,7 +18,7 @@ return [
     'paths' => ['api/*'],
 
     'allowed_methods' => ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-    'allowed_origins' => ['http://localhost:5173'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
