@@ -7,6 +7,11 @@ use App\Models\Trip;
 
 class TripController extends Controller
 {
+
+    public function getTrips(Request $request){
+        $trips = Trip::with('bus')->orderBy("created_at","desc")->paginate(10);
+        return response()->json($trips,200);
+       }
     public function create(Request $request){
         /**
             * Get a validator for an incoming registration request.

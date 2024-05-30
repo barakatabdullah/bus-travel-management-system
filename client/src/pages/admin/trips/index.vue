@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import api from '@/config/axios';
 import { useQuery } from '@tanstack/vue-query';
-import { useUsersStore } from './_store';
+import { useTripsStore } from './_store';
 
 const userStore = useUserStore()
-const usersStore = useUsersStore()
+const tripsStore = useTripsStore()
 
 
 // const { data, isLoading, isError, error } = useQuery({
@@ -20,12 +20,12 @@ const usersStore = useUsersStore()
 
 
 onBeforeMount(() => {
-    usersStore.getUsers()
+    tripsStore.getTrips()
   })
 
 
 
-    console.log(usersStore.users)
+    console.log(tripsStore.trips)
 
       
 
@@ -34,10 +34,10 @@ onBeforeMount(() => {
 
 <template>
     <div class="container mx-auto py-8 flex flex-col gap-4">
-        <h2 class="font-bold text-5">USERS</h2>
+        <h2 class="font-bold text-5">TRIPS</h2>
 
 
-        <DataTable class="rounded-lg border overflow-hidden" :value="usersStore.users" stripedRows >
+        <DataTable class="rounded-lg border overflow-hidden" :value="tripsStore.trips" stripedRows >
             <Column filed="name" header="Name">
                 <template #body="slotProps">
             {{ slotProps.data.name }}
@@ -73,7 +73,7 @@ onBeforeMount(() => {
 
 
 <route lang="yaml">
-name: Users  
+name: Trips  
 meta:
  requiresAuth: true
  layout: admin

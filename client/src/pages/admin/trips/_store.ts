@@ -6,21 +6,21 @@ import api from '@/config/axios'
 
 const router = useRouter()
 
-export const useUsersStore = defineStore('Users', {
+export const useTripsStore = defineStore('Trips', {
   state: () => {
     return {
-      users:null ,
+      trips:null ,
     }
   },
   actions: {
 
-      async getUsers(){
+      async getTrips(){
         const userStore=useUserStore()
-    const res = await api.get('users', {
+        const res = await api.get('trip', {
         
         headers: { Authorization: `Bearer ${userStore.user.token}` }
       });
-      this.users = res.data
+      this.trips = res.data
 }
 
   },

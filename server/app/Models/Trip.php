@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Bus;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Trip extends Model
 {
@@ -14,4 +17,10 @@ class Trip extends Model
     protected $fillable = [
         'name', 'active', 'bus_id', 'time'
     ];
+
+
+    public function bus(): BelongsTo
+    {
+        return $this->belongsTo(Bus::class);
+    }
 }

@@ -8,7 +8,8 @@ use App\Models\User;
 class UserController extends Controller
 {
    public function getUsers(Request $request){
-    $users = User::orderBy("created_at","desc")->paginate(10);
+    // $users = User::orderBy("created_at","desc")->paginate(10);
+    $users = User::with('roles')->get();
     return response()->json($users,200);
    }
    public function create(Request $request){

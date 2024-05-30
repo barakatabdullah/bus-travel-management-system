@@ -13,6 +13,10 @@ const navigation = [
     {
         title:'Buses',
         name:'Buses',
+    },
+    {
+        title:'Trips',
+        name:'Trips',
     }
 ]
 </script>
