@@ -18,7 +18,7 @@ class TripController extends Controller
                'name' => 'required|string|max:255',
                'active' => 'boolean', 
                'bus_id' => 'required|integer', 
-               'time' => 'date_format:H:i:s', 
+               'time' => 'date', 
            ]);
    
            if ($valid->fails()) {
