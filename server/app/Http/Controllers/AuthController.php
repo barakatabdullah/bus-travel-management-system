@@ -53,9 +53,9 @@ class AuthController extends Controller
 
 
         // Fire off the internal request.
-        $token = $user->createToken('Token name')->accessToken;
+        $token = $user->createToken('access')->accessToken;
 
-        $user->assignRole('admin');
+        $user->assignRole('cashir');
 
 
         return response()->json(['data' => ['user' => $user, 'token' => $token]], 201);
@@ -82,7 +82,9 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         $user = auth()->user();
-        return response()->json(['data' => ['user' => $user, 'token' => $token]], 201);
+        $roles = $user->getRoleNames();
+        $token = $user->createToken('access')->accessToken;
+        return response()->json(['data' => ['user' => $user, 'token' => $token,'roles'=>$roles]], 201);
        } catch (\Exception $e) {
         return response()->json($e->getMessage(), 500);
        }

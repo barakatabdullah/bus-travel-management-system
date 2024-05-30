@@ -5,7 +5,7 @@ const api = axios.create({
   baseURL: "/api",
 
   // Request timeout
-//   timeout: 60000,
+  timeout: 60000,
 
   // Request headers
   headers: {

@@ -8,5 +8,5 @@ const router = useRouter()
 
 
 
-router.push("auth/login")
+router.push({name:"Login"})
 </script>

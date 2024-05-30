@@ -22,6 +22,16 @@ return new class extends Migration
         $adminRole->givePermissionTo($addUsersPermission);
         $adminRole->givePermissionTo($managePermission);
         $cashierRole->givePermissionTo($managePermission);
+
+        $adminApiRole = Role::create(['guard_name' => 'api','name' => 'admin']);
+        $cashierApiRole = Role::create(['guard_name' => 'api','name' => 'cashier']);
+        $passengerApiRole = Role::create(['guard_name' => 'api','name' => 'passenger']);
+        $addUsersApiPermission = Permission::create(['guard_name' => 'api','name' => 'add users']);
+        $manageApiPermission = Permission::create(['guard_name' => 'api','name' => 'manage']);
+
+        $adminApiRole->givePermissionTo($addUsersApiPermission);
+        $adminApiRole->givePermissionTo($manageApiPermission);
+        $cashierApiRole->givePermissionTo($manageApiPermission);
     }
 
     /**

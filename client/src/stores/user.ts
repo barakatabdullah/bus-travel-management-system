@@ -9,12 +9,9 @@ export const useUserStore = defineStore('User', {
   state: () => {
     return {
       user: {
-        // name: localStorage.getItem('user'),
-        // role:localStorage.getItem('user'),
-        // token: localStorage.getItem('token'),
-        name: "Abdullah",
-        role:'admin',
-        token: 'dfsgdf',
+        name: localStorage.getItem('user'),
+        role: localStorage.getItem('role'),
+        token: localStorage.getItem('token'),
 
       },
     }
@@ -56,3 +53,6 @@ export const useUserStore = defineStore('User', {
 
   },
 })
+
+
+

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 
 // Route::get('/user', function (Request $request) {
@@ -13,5 +14,6 @@ Route::post('/register', [AuthController::class, 'create']);
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
-    Route::get('/user', 'AuthController@user');
+    Route::get('/users', [UserController::class, 'getUsers']);
+    Route::post('/users', [UserController::class, 'create']);
 });

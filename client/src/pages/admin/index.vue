@@ -8,5 +8,5 @@ const router = useRouter()
 
 
 
-router.push("admin/dashboard")
+router.push({name:"Dashboard"})
 </script>

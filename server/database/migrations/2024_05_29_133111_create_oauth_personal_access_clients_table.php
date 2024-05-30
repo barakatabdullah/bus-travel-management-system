@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trips', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->boolean('active')->default(true);
-            $table->foreignId('bus_id')->constrained('buses')->cascadeOnDelete();
-            $table->timestamp('time')->nullable();
+        Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('client_id');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trips');
+        Schema::dropIfExists('oauth_personal_access_clients');
     }
 };
