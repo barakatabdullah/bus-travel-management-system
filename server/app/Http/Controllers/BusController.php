@@ -7,6 +7,11 @@ use App\Models\Bus;
 
 class BusController extends Controller
 {
+
+    public function getBuses(Request $request){
+        $buses = Bus::orderBy("created_at","desc")->paginate(10);
+        return response()->json($buses,200);
+       }
     public function create(Request $request){
         /**
             * Get a validator for an incoming registration request.
@@ -41,4 +46,5 @@ class BusController extends Controller
            return response()->json($e->getMessage(), 500);
           }
       }
+
 }

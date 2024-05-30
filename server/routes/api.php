@@ -19,6 +19,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:api')->group(function () {
     Route::get('/users', [UserController::class, 'getUsers']);
     Route::post('/users', [UserController::class, 'create']);
+    Route::get('/bus', [BusController::class, 'getBuses']);
     Route::post('/bus', [BusController::class, 'create']);
     Route::post('/trip', [TripController::class, 'create']);
     Route::post('/ticket', [TicketController::class, 'create']);

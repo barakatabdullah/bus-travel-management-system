@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import api from '@/config/axios';
 import { useQuery } from '@tanstack/vue-query';
-import { useUsersStore } from './_store';
+import { useBusesStore } from './_store';
 
 const userStore = useUserStore()
-const usersStore = useUsersStore()
+const busesStore = useBusesStore()
 
 
 // const { data, isLoading, isError, error } = useQuery({
@@ -20,12 +20,12 @@ const usersStore = useUsersStore()
 
 
 onBeforeMount(() => {
-    usersStore.getUsers()
+    busesStore.getBuses()
   })
 
 
 
-    console.log(usersStore.users)
+
 
       
 
@@ -34,26 +34,22 @@ onBeforeMount(() => {
 
 <template>
     <div class="container mx-auto py-8 flex flex-col gap-4">
-        <h2 class="font-bold text-5">USERS</h2>
+        <h2 class="font-bold text-5">BUSES</h2>
 
 
-        <DataTable class="rounded-lg border overflow-hidden" :value="usersStore.users" stripedRows >
-            <Column filed="uname" header="Name">
+        <DataTable class="rounded-lg border overflow-hidden" :value="busesStore.buses" stripedRows >
+            <Column filed="deriver" header="Driver">
                 <template #body="slotProps">
-            {{ slotProps.data.name }}
+            {{ slotProps.data.deriver }}
         </template>
             </Column>
-            <Column filed="email" header="Email">
+            <Column filed="capacity" header="Capacity">
                 <template #body="slotProps">
-            {{ slotProps.data.email }}
+            {{ slotProps.data.capacity }}
         </template>
             </Column>
-            <Column filed="phone" header="Phone">
-                <template #body="slotProps">
-            {{ slotProps.data.phone }}
-        </template>
-            </Column>
-            <Column filed="phone" >
+           
+            <Column filed="id" >
                 <template #body="slotProps">
             <Button
             text
@@ -68,7 +64,7 @@ onBeforeMount(() => {
 
 
 <route lang="yaml">
-name: Users  
+name: Buses  
 meta:
  requiresAuth: true
  layout: admin

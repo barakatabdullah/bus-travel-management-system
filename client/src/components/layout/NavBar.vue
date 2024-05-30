@@ -9,6 +9,10 @@ const navigation = [
     {
         title:'Users',
         name:'Users',
+    },
+    {
+        title:'Buses',
+        name:'Buses',
     }
 ]
 </script>
