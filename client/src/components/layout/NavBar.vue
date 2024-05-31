@@ -51,7 +51,7 @@ function logout() {
       <div>
         <Button
           text
-          :onClick="() => logout()"
+          @Click="logout"
           icon="i-tabler-door-exit"
           class="text-white"
         />
