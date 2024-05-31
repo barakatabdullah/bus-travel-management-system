@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Trip;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Bus extends Model
 {
@@ -21,4 +22,11 @@ class Bus extends Model
         'deriver',
         'capacity',
     ];
+
+
+
+
+    public function ticket() : BelongsToMany{
+        return $this->belongsToMany(Ticket::class);
+    }
 }
