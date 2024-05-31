@@ -12,10 +12,7 @@ class Bus extends Model
 {
     use HasFactory;
 
-    public function trip(): HasMany
-    {
-        return $this->hasMany(Trip::class);
-    }
+
 
 
     protected $fillable = [
@@ -23,10 +20,10 @@ class Bus extends Model
         'capacity',
     ];
 
-
-
-
-    public function ticket() : BelongsToMany{
-        return $this->belongsToMany(Ticket::class);
+    public function trip(): HasMany
+    {
+        return $this->hasMany(Trip::class);
     }
+
+
 }

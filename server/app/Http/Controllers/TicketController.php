@@ -12,7 +12,7 @@ public function getTickets(){
 
     try{
 
-        $tickets = Ticket::with('trip','bus')->get();
+        $tickets = Ticket::with('trip','user')->get();
         return response()->json($tickets);
     }catch(\Exception $e) {
         return response()->json($e->getMessage(), 500);
@@ -26,9 +26,7 @@ public function getTickets(){
             * @param  array  $request
             * @return \Illuminate\Contracts\Validation\Validator
             */
-           $valid = validator($request->only('title','description' , 'status','trip_id','user_id'), [
-               'title' => 'required|string|max:255',
-               'description' => 'string',
+           $valid = validator($request->only('status','trip_id','user_id'), [
                'status' => 'required|boolean',
                'trip_id' => 'required|integer',
                'user_id' => 'required|integer',
@@ -40,11 +38,9 @@ public function getTickets(){
            }
 
           try{
-           $data = $request->only('title','description', 'status','trip_id','user_id');
+           $data = $request->only('status','trip_id','user_id');
 
            $ticket = Ticket::create([
-               'title' => $data['title'],
-               'description' => $data['description'],
                'status' => $data['status'],
                'trip_id' => $data['trip_id'],
                'user_id' => $data['user_id']

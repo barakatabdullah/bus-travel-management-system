@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Bus;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Trip extends Model
@@ -26,7 +27,7 @@ class Trip extends Model
     }
 
 
-    public function ticket() : BelongsToMany{
-        return $this->belongsToMany(Ticket::class);
+    public function ticket() : HasMany{
+        return $this->hasMany(Ticket::class);
     }
 }
