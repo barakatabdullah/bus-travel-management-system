@@ -20,7 +20,7 @@ export const useTripsStore = defineStore('Trips', {
         
         headers: { Authorization: `Bearer ${userStore.user.token}` }
       });
-      this.trips = res.data
+      this.trips = res.data.data
 }
 
   },

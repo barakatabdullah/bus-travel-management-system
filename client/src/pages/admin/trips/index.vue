@@ -19,13 +19,12 @@ const tripsStore = useTripsStore()
 
 
 
-onBeforeMount(() => {
-    tripsStore.getTrips()
+onBeforeMount(async () => {
+    await tripsStore.getTrips()
   })
 
 
-
-    console.log(tripsStore.trips)
+console.log(tripsStore.trips)
 
       
 
@@ -43,22 +42,18 @@ onBeforeMount(() => {
             {{ slotProps.data.name }}
         </template>
             </Column>
-            <Column filed="email" header="Email">
+            <Column filed="bus" header="Bus">
                 <template #body="slotProps">
-            {{ slotProps.data.email }}
+            {{ slotProps.data.bus_id }}
         </template>
             </Column>
-            <Column filed="phone" header="Phone">
+            <Column filed="time" header="Time">
                 <template #body="slotProps">
-            {{ slotProps.data.phone }}
+            {{ slotProps.data.time }}
         </template>
             </Column>
-            <Column filed="role" header="Role">
-                <template #body="slotProps">
-            {{ slotProps.data?.roles[0].name}}
-        </template>
-            </Column>
-            <Column filed="phone" >
+
+            <Column filed="edit" >
                 <template #body="slotProps">
             <Button
             text
