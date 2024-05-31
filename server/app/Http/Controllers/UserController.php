@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
+
 
 class UserController extends Controller
 {
@@ -44,6 +46,8 @@ class UserController extends Controller
 
 
         $user->assignRole('passenger');
+
+        // event(new Registered($user));
 
 
         return response()->json(['data' => ['user' => $user]], 201);
