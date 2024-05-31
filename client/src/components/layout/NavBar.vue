@@ -1,36 +1,36 @@
 <script setup lang="ts">
-const router = useRouter();
+const router = useRouter()
 
 const navigation = [
   {
-    title: "Home",
-    name: "Home",
+    title: 'Home',
+    name: 'Home'
   },
   {
-    title: "Dashboard",
-    name: "Dashboard",
+    title: 'Dashboard',
+    name: 'Dashboard'
   },
   {
-    title: "Users",
-    name: "Users",
+    title: 'Users',
+    name: 'Users'
   },
   {
-    title: "Buses",
-    name: "Buses",
+    title: 'Buses',
+    name: 'Buses'
   },
   {
-    title: "Trips",
-    name: "Trips",
+    title: 'Trips',
+    name: 'Trips'
   },
   {
-    title: "Tickets",
-    name: "Tickets",
-  },
-];
+    title: 'Tickets',
+    name: 'Tickets'
+  }
+]
 
 function logout() {
-  localStorage.removeItem("token");
-  router.push({ name: "Login" });
+  localStorage.removeItem('token')
+  router.push({ name: 'Login' })
 }
 </script>
 
@@ -49,12 +49,7 @@ function logout() {
       </div>
 
       <div>
-        <Button
-          text
-          @Click="logout"
-          icon="i-tabler-door-exit"
-          class="text-white"
-        />
+        <Button text @Click="logout" icon="i-tabler-door-exit" class="text-white" />
       </div>
     </div>
   </nav>

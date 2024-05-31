@@ -1,4 +1,3 @@
-
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
@@ -9,22 +8,16 @@ const router = useRouter()
 export const useTripsStore = defineStore('Trips', {
   state: () => {
     return {
-      trips:null ,
+      trips: null
     }
   },
   actions: {
-
-      async getTrips(){
-        const userStore=useUserStore()
-        const res = await api.get('trip', {
-        
+    async getTrips() {
+      const userStore = useUserStore()
+      const res = await api.get('trip', {
         headers: { Authorization: `Bearer ${userStore.user.token}` }
-      });
+      })
       this.trips = res.data.data
-}
-
-  },
+    }
+  }
 })
-
-
-

@@ -1,35 +1,35 @@
 <script setup lang="ts">
-import api from "@/config/axios";
-import { useQuery } from "@tanstack/vue-query";
-import { useTicketsStore } from "./_store";
-import { useTripsStore } from "../trips/_store";
-import { useUsersStore } from "../users/_store";
+import api from '@/config/axios'
+import { useQuery } from '@tanstack/vue-query'
+import { useTicketsStore } from './_store'
+import { useTripsStore } from '../trips/_store'
+import { useUsersStore } from '../users/_store'
 
-const userStore = useUserStore();
-const usersStore = useUsersStore();
-const tripsStore = useTripsStore();
-const ticketsStore = useTicketsStore();
-const visible = ref(false);
-const userId = ref();
-const tripId = ref();
-const status = ref(true);
+const userStore = useUserStore()
+const usersStore = useUsersStore()
+const tripsStore = useTripsStore()
+const ticketsStore = useTicketsStore()
+const visible = ref(false)
+const userId = ref()
+const tripId = ref()
+const status = ref(true)
 
 onBeforeMount(() => {
-  ticketsStore.getTickets();
-  tripsStore.getTrips();
-  usersStore.getUsers();
-});
+  ticketsStore.getTickets()
+  tripsStore.getTrips()
+  usersStore.getUsers()
+})
 
 async function onSubmit() {
   {
     await ticketsStore.addTicket({
       user_id: userId.value,
       trip_id: tripId.value,
-      status: status.value,
-    });
-    userId.value = null;
-    tripId.value = null;
-    visible.value = false;
+      status: status.value
+    })
+    userId.value = null
+    tripId.value = null
+    visible.value = false
   }
 }
 
@@ -42,12 +42,7 @@ console.log(ticketsStore.tickets)
       <h2 class="font-bold text-5">Tickets</h2>
       <div class="card flex justify-content-center">
         <Button label="Add Ticket" @click="visible = true" />
-        <Dialog
-          v-model:visible="visible"
-          modal
-          header="New Ticket"
-          :style="{ width: '25rem' }"
-        >
+        <Dialog v-model:visible="visible" modal header="New Ticket" :style="{ width: '25rem' }">
           <span class="p-text-secondary block mb-5">Update your information.</span>
           <div class="flex items-center gap-3 mb-3">
             <label for="trip" class="font-semibold w-6rem">Trip</label>
@@ -90,11 +85,7 @@ console.log(ticketsStore.tickets)
       </div>
     </div>
 
-    <DataTable
-      class="rounded-lg border overflow-hidden"
-      :value="ticketsStore.tickets"
-      stripedRows
-    >
+    <DataTable class="rounded-lg border overflow-hidden" :value="ticketsStore.tickets" stripedRows>
       <Column filed="" header="Number">
         <template #body="slotProps">
           {{ slotProps.data.id }}

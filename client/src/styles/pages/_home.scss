@@ -1,28 +1,23 @@
 .shape {
-    
-    position: absolute;
-    width: 100rem ;
-    height: 100rem;
-    top: -70%;
-    right: -60%;
-    z-index:0;
-    background: radial-gradient(34.98% 34.98% at 50% 50%,#6b09ea 0%,rgba(6, 19, 45, 0) 100%);
-    opacity: 0.5;
+  position: absolute;
+  width: 100rem;
+  height: 100rem;
+  top: -70%;
+  right: -60%;
+  z-index: 0;
+  background: radial-gradient(34.98% 34.98% at 50% 50%, #6b09ea 0%, rgba(6, 19, 45, 0) 100%);
+  opacity: 0.5;
 
-    
-
-      .s3 {
-        z-index: 1;
-        width: 800px;
-        height: 800px;
-        background: linear-gradient(239.67deg, #0057ff -10.29%, #7ff805 197.14%);
-        opacity: 0.6;
-        mix-blend-mode: normal;
-        filter: blur(150px);
-        right: auto !important;
-        top: 15% !important;
-        left: -20%;
-      }
+  .s3 {
+    z-index: 1;
+    width: 800px;
+    height: 800px;
+    background: linear-gradient(239.67deg, #0057ff -10.29%, #7ff805 197.14%);
+    opacity: 0.6;
+    mix-blend-mode: normal;
+    filter: blur(150px);
+    right: auto !important;
+    top: 15% !important;
+    left: -20%;
   }
-  
-  
+}

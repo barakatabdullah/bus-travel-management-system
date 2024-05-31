@@ -20,26 +20,29 @@ export const useTicketsStore = defineStore('Tickets', {
       })
       this.tickets = res.data
     },
-    async addTicket(payload:{user_id:number,trip_id:number , status:boolean}) {
-      
+    async addTicket(payload: { user_id: number; trip_id: number; status: boolean }) {
       const userStore = useUserStore()
-      const res = await api.post('ticket', {
-        trip_id: payload.trip_id,
-        user_id:payload.user_id,
-        status:payload.status
-      },{ headers: { Authorization: `Bearer ${userStore.user.token}` }})
+      const res = await api.post(
+        'ticket',
+        {
+          trip_id: payload.trip_id,
+          user_id: payload.user_id,
+          status: payload.status
+        },
+        { headers: { Authorization: `Bearer ${userStore.user.token}` } }
+      )
 
       if (res.status === 201) {
         this.getTickets()
         Swal.fire({
-          title: "Ticket add successfuly",
-          icon: "success"
-        });
+          title: 'Ticket add successfuly',
+          icon: 'success'
+        })
       } else {
         Swal.fire({
-          title: "Some Thing went wrong",
-          icon: "error"
-        });
+          title: 'Some Thing went wrong',
+          icon: 'error'
+        })
       }
     }
   }

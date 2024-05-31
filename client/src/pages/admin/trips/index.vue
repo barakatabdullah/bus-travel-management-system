@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import api from '@/config/axios';
-import { useQuery } from '@tanstack/vue-query';
-import { useTripsStore } from './_store';
+import api from '@/config/axios'
+import { useQuery } from '@tanstack/vue-query'
+import { useTripsStore } from './_store'
 
 const userStore = useUserStore()
 const tripsStore = useTripsStore()
-
 
 // const { data, isLoading, isError, error } = useQuery({
 //       queryKey: ['users'],
@@ -17,59 +16,46 @@ const tripsStore = useTripsStore()
 //       },
 //     });
 
-
-
 onBeforeMount(async () => {
-    await tripsStore.getTrips()
-  })
-
+  await tripsStore.getTrips()
+})
 
 console.log(tripsStore.trips)
-
-      
-
-
 </script>
 
 <template>
-    <div class="container mx-auto py-8 flex flex-col gap-4">
-        <h2 class="font-bold text-5">TRIPS</h2>
+  <div class="container mx-auto py-8 flex flex-col gap-4">
+    <h2 class="font-bold text-5">TRIPS</h2>
 
+    <DataTable class="rounded-lg border overflow-hidden" :value="tripsStore.trips" stripedRows>
+      <Column filed="name" header="Name">
+        <template #body="slotProps">
+          {{ slotProps.data.name }}
+        </template>
+      </Column>
+      <Column filed="bus" header="Bus">
+        <template #body="slotProps">
+          {{ slotProps.data.bus_id }}
+        </template>
+      </Column>
+      <Column filed="time" header="Time">
+        <template #body="slotProps">
+          {{ slotProps.data.time }}
+        </template>
+      </Column>
 
-        <DataTable class="rounded-lg border overflow-hidden" :value="tripsStore.trips" stripedRows >
-            <Column filed="name" header="Name">
-                <template #body="slotProps">
-            {{ slotProps.data.name }}
+      <Column filed="edit">
+        <template #body="slotProps">
+          <Button text icon="i-tabler-edit" />
         </template>
-            </Column>
-            <Column filed="bus" header="Bus">
-                <template #body="slotProps">
-            {{ slotProps.data.bus_id }}
-        </template>
-            </Column>
-            <Column filed="time" header="Time">
-                <template #body="slotProps">
-            {{ slotProps.data.time }}
-        </template>
-            </Column>
-
-            <Column filed="edit" >
-                <template #body="slotProps">
-            <Button
-            text
-            icon="i-tabler-edit"
-            />
-        </template>
-            </Column>
-        </DataTable>
-
-    </div>
+      </Column>
+    </DataTable>
+  </div>
 </template>
 
-
 <route lang="yaml">
-name: Trips  
+name: Trips
 meta:
- requiresAuth: true
- layout: admin
-</route> 
+  requiresAuth: true
+  layout: admin
+</route>

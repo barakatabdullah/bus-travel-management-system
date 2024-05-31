@@ -1,4 +1,3 @@
-
 import { defineStore } from 'pinia'
 import { useRouter } from 'vue-router'
 import api from '@/config/axios'
@@ -11,20 +10,18 @@ export const useUserStore = defineStore('User', {
       user: {
         name: localStorage.getItem('user'),
         role: localStorage.getItem('role'),
-        token: localStorage.getItem('token'),
-
-      },
+        token: localStorage.getItem('token')
+      }
     }
   },
   actions: {
-
     logout() {
       api
         .get(`/user/logout`, {
           headers: {
-            'Authorization': `Bearer ${this.user.token}`,
-            'Content-Type': 'application/json',
-          },
+            Authorization: `Bearer ${this.user.token}`,
+            'Content-Type': 'application/json'
+          }
         })
         .then((res) => {
           // eslint-disable-next-line eqeqeq
@@ -48,11 +45,6 @@ export const useUserStore = defineStore('User', {
     setToken(token: string) {
       localStorage.setItem('token', token)
       this.user.token = localStorage.getItem('token')
-
-    },
-
-  },
+    }
+  }
 })
-
-
-

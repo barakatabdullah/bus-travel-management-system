@@ -1,39 +1,39 @@
 <script setup lang="ts">
-import { useMutation } from "@tanstack/vue-query";
-import { useUserStore } from "@/stores/user";
-import api from "@/config/axios";
-const userStore = useUserStore();
+import { useMutation } from '@tanstack/vue-query'
+import { useUserStore } from '@/stores/user'
+import api from '@/config/axios'
+const userStore = useUserStore()
 
-const email = ref("");
-const password = ref("");
-const router = useRouter();
+const email = ref('')
+const password = ref('')
+const router = useRouter()
 
 // Mutation
 const { mutate } = useMutation({
   mutationFn: async () => {
     const res = await api
-      .post("login", {
+      .post('login', {
         email: email.value,
-        password: password.value,
+        password: password.value
       })
-      .then((res) => res.data);
-    return res;
+      .then((res) => res.data)
+    return res
   },
   onSuccess: (res) => {
     // Invalidate and refetch
     // queryClient.invalidateQueries({ queryKey: ['todos'] })
-    userStore.user.name = res.data?.user.name;
-    userStore.user.role = res.data?.roles[0];
-    userStore.user.token = res.data?.token;
-    localStorage.setItem("name", res.data?.user.name);
-    localStorage.setItem("role", res.data?.roles[0]);
-    localStorage.setItem("token", res.data?.token);
-    router.push({ name: "Dashboard" });
-  },
-});
+    userStore.user.name = res.data?.user.name
+    userStore.user.role = res.data?.roles[0]
+    userStore.user.token = res.data?.token
+    localStorage.setItem('name', res.data?.user.name)
+    localStorage.setItem('role', res.data?.roles[0])
+    localStorage.setItem('token', res.data?.token)
+    router.push({ name: 'Dashboard' })
+  }
+})
 
 function onSubmit() {
-  mutate();
+  mutate()
 }
 </script>
 
@@ -53,7 +53,7 @@ function onSubmit() {
             <Password
               :feedback="false"
               :pt="{
-                input: { root: { class: 'w-full' } },
+                input: { root: { class: 'w-full' } }
               }"
               v-model="password"
               inputId="password"

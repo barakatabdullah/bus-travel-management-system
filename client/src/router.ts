@@ -9,6 +9,6 @@ export const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const userStore = useUserStore()
-  if (to.meta.requiresAuth&& !userStore.user.token) next({ name: 'Login' })
+  if (to.meta.requiresAuth && !userStore.user.token) next({ name: 'Login' })
   else next()
 })

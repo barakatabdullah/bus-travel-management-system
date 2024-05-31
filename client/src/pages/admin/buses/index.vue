@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import api from '@/config/axios';
-import { useQuery } from '@tanstack/vue-query';
-import { useBusesStore } from './_store';
+import api from '@/config/axios'
+import { useQuery } from '@tanstack/vue-query'
+import { useBusesStore } from './_store'
 
 const userStore = useUserStore()
 const busesStore = useBusesStore()
-
 
 // const { data, isLoading, isError, error } = useQuery({
 //       queryKey: ['users'],
@@ -17,55 +16,39 @@ const busesStore = useBusesStore()
 //       },
 //     });
 
-
-
 onBeforeMount(() => {
-    busesStore.getBuses()
-  })
-
-
-
-
-
-      
-
-
+  busesStore.getBuses()
+})
 </script>
 
 <template>
-    <div class="container mx-auto py-8 flex flex-col gap-4">
-        <h2 class="font-bold text-5">BUSES</h2>
+  <div class="container mx-auto py-8 flex flex-col gap-4">
+    <h2 class="font-bold text-5">BUSES</h2>
 
+    <DataTable class="rounded-lg border overflow-hidden" :value="busesStore.buses" stripedRows>
+      <Column filed="deriver" header="Driver">
+        <template #body="slotProps">
+          {{ slotProps.data.deriver }}
+        </template>
+      </Column>
+      <Column filed="capacity" header="Capacity">
+        <template #body="slotProps">
+          {{ slotProps.data.capacity }}
+        </template>
+      </Column>
 
-        <DataTable class="rounded-lg border overflow-hidden" :value="busesStore.buses" stripedRows >
-            <Column filed="deriver" header="Driver">
-                <template #body="slotProps">
-            {{ slotProps.data.deriver }}
+      <Column filed="id">
+        <template #body="slotProps">
+          <Button text icon="i-tabler-edit" />
         </template>
-            </Column>
-            <Column filed="capacity" header="Capacity">
-                <template #body="slotProps">
-            {{ slotProps.data.capacity }}
-        </template>
-            </Column>
-           
-            <Column filed="id" >
-                <template #body="slotProps">
-            <Button
-            text
-            icon="i-tabler-edit"
-            />
-        </template>
-            </Column>
-        </DataTable>
-
-    </div>
+      </Column>
+    </DataTable>
+  </div>
 </template>
 
-
 <route lang="yaml">
-name: Buses  
+name: Buses
 meta:
- requiresAuth: true
- layout: admin
-</route> 
+  requiresAuth: true
+  layout: admin
+</route>
