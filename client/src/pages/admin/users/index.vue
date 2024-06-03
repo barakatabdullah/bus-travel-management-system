@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useQuery } from '@tanstack/vue-query'
-import { getUsers } from './utils';
+import { getUsers } from './_utils';
 
 const { data } = useQuery({
   queryKey: ['users'],

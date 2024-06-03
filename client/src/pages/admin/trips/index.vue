@@ -1,33 +1,23 @@
 <script setup lang="ts">
-import api from '@/config/axios'
+
 import { useQuery } from '@tanstack/vue-query'
-import { useTripsStore } from './_store'
+import { getTrips } from './_utils';
 
-const userStore = useUserStore()
-const tripsStore = useTripsStore()
+const { data } = useQuery({
+  queryKey: ['trips'],
+  queryFn: getTrips,
+  select:(data)=>data.data
 
-// const { data, isLoading, isError, error } = useQuery({
-//       queryKey: ['users'],
-//       queryFn: async () => {
-//         const res = await api.get('users', {
-//           headers: { Authorization: `Bearer ${userStore.user.token}` }
-//         });
-//         return toRaw(res.data.data);
-//       },
-//     });
-
-onBeforeMount(async () => {
-  await tripsStore.getTrips()
 })
 
-console.log(tripsStore.trips)
+
 </script>
 
 <template>
   <div class="container mx-auto py-8 flex flex-col gap-4">
     <h2 class="font-bold text-5">TRIPS</h2>
 
-    <DataTable class="rounded-lg border overflow-hidden" :value="tripsStore.trips" stripedRows>
+    <DataTable class="rounded-lg border overflow-hidden" :value="data" stripedRows>
       <Column filed="name" header="Name">
         <template #body="slotProps">
           {{ slotProps.data.name }}
