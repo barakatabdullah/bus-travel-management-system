@@ -3,7 +3,7 @@ import api from '@/config/axios'
 import { useQuery } from '@tanstack/vue-query'
 import { useTicketsStore } from './_store'
 import { useTripsStore } from '../trips/_store'
-import { useUsersStore } from '../users/_store'
+import { useUsersStore } from '../users/utils'
 
 const userStore = useUserStore()
 const usersStore = useUsersStore()
