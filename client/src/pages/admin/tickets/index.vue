@@ -1,28 +1,55 @@
 <script setup lang="ts">
 import api from '@/config/axios'
-import { useQuery } from '@tanstack/vue-query'
-import { useTicketsStore } from './_store'
-import { useTripsStore } from '../trips/_utils'
-import { useUsersStore } from '../users/_utils'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import { addTicket, getTickets } from './_utils'
+import Swal from 'sweetalert2';
+import { getTrips } from '../trips/_utils';
+import { getUsers } from '../users/_utils';
 
-const userStore = useUserStore()
-const usersStore = useUsersStore()
-const tripsStore = useTripsStore()
-const ticketsStore = useTicketsStore()
+const queryClient = useQueryClient()
+
 const visible = ref(false)
 const userId = ref()
 const tripId = ref()
 const status = ref(true)
 
-onBeforeMount(() => {
-  ticketsStore.getTickets()
-  tripsStore.getTrips()
-  usersStore.getUsers()
+
+const { data:tickets } = useQuery({
+  queryKey: ['tickets'],
+  queryFn: getTickets,
+
 })
 
-async function onSubmit() {
+const { data:trips } = useQuery({
+  queryKey: ['trips'],
+  queryFn: getTrips,
+  select:(data)=>data.data
+
+})
+
+const { data:users } = useQuery({
+  queryKey: ['users'],
+  queryFn: getUsers,
+
+})
+
+const { mutate:ticketMutate } = useMutation({
+  mutationFn: addTicket,
+  onSuccess: ()=>{
+    Swal.fire({
+      title: 'Ticket add successfuly',
+      icon: 'success'
+    })
+    queryClient.invalidateQueries({ queryKey: ['tickets'] })
+
+  }
+})
+
+
+
+function onSubmit() {
   {
-    await ticketsStore.addTicket({
+    ticketMutate({
       user_id: userId.value,
       trip_id: tripId.value,
       status: status.value
@@ -33,7 +60,7 @@ async function onSubmit() {
   }
 }
 
-console.log(ticketsStore.tickets)
+
 </script>
 
 <template>
@@ -50,7 +77,7 @@ console.log(ticketsStore.tickets)
               placeholder="Trips"
               class="w-full"
               v-model="tripId"
-              :options="tripsStore.trips!"
+              :options="trips!"
               optionLabel="name"
               optionValue="id"
               id="trip"
@@ -62,7 +89,7 @@ console.log(ticketsStore.tickets)
               placeholder="Passengers"
               class="w-full"
               v-model="userId"
-              :options="usersStore.users!"
+              :options="users!"
               optionLabel="name"
               optionValue="id"
               id="passenger"
@@ -85,7 +112,7 @@ console.log(ticketsStore.tickets)
       </div>
     </div>
 
-    <DataTable class="rounded-lg border overflow-hidden" :value="ticketsStore.tickets" stripedRows>
+    <DataTable class="rounded-lg border overflow-hidden" :value="tickets" stripedRows>
       <Column filed="" header="Number">
         <template #body="slotProps">
           {{ slotProps.data.id }}
